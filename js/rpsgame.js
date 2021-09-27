@@ -8,7 +8,6 @@ const scoresHtml = document.querySelector(".scores");
 const computerScoreHtml = document.querySelector(".computerScore");
 const gameConclusionHtml = document.querySelector(".gameConclusion");
 let gameResult;
-let roundsToPrint;
 let list;
 let playerScore = 0;
 let computerScore = 0;
@@ -75,7 +74,7 @@ function playRound(playerSelection, computerSelection) {
     totalRounds = prompt("How many rounds do you want to play? Make sure to type a number!","")
   } while (isNumber(totalRounds) == false || totalRounds == null || totalRounds == undefined || totalRounds === 0);
 
-roundsToPrint = document.createElement("h3");
+let roundsToPrint = document.createElement("h3");
 roundsNumberHtml.appendChild(roundsToPrint);
 roundsToPrint.textContent = `Rounds Played: ${totalRounds}`
 
