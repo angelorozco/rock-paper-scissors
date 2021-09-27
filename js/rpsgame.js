@@ -75,7 +75,7 @@ function playRound(playerSelection, computerSelection) {
     totalRounds = prompt("How many rounds do you want to play? Make sure to type a number!","")
   } while (isNumber(totalRounds) == false || totalRounds == null || totalRounds == undefined || totalRounds === 0);
 
-roundsToPrint = document.createElement("h3");
+proundsToPrint = document.createElement("h3");
 roundsNumberHtml.appendChild(roundsToPrint);
 roundsToPrint.textContent = `Rounds Played: ${totalRounds}`
 
@@ -118,7 +118,7 @@ roundsToPrint.textContent = `Rounds Played: ${totalRounds}`
 
 
             if (playerScore == computerScore) {
-                gameConclusion = `It's a tie! Try another more rounds!`
+                gameConclusion = `It's a tie! Try more rounds!`
             } else if (playerScore > computerScore) {
                 gameConclusion = `Player Wins!`
             } else {
