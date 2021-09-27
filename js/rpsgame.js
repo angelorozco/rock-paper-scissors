@@ -1,3 +1,27 @@
+let playerSelection;
+let computerSelection;
+let roundResult;
+let finalResult;
+const scoreBoard = document.querySelector(".scoreBoard");
+const roundsNumberHtml = document.querySelector(".roundsNumber");
+const scoresHtml = document.querySelector(".scores");
+const computerScoreHtml = document.querySelector(".computerScore");
+const gameConclusionHtml = document.querySelector(".gameConclusion");
+let gameResult;
+let roundsToPrint;
+let list;
+let playerScore = 0;
+let computerScore = 0;
+let playerInput = "";
+let containsOnlyDigits = /^[0-9]+$/
+let totalRounds = 0;
+let gameConclusion;
+
+
+
+
+
+
 function isNumber(value) {
     var numberPattern = /^[0-9]+$/; 
     return numberPattern.test(value);
@@ -23,16 +47,22 @@ function playRound(playerSelection, computerSelection) {
             if (playerSelection == computerSelection) {
                 return "It's a tie!";
             } else if (playerSelection == "rock" && computerSelection == "paper") {
+                computerScore += 1;
                 return `You Lose! ${computerSelection} beats ${playerSelection}!`;
             } else if (playerSelection == "rock" && computerSelection == "scissors") {
+                playerScore += 1;
                 return `You Win! ${playerSelection} beats ${computerSelection}!`;
             } else if (playerSelection == "paper" && computerSelection == "scissors") {
+                computerScore += 1;
                 return `You Lose! ${computerSelection} beats ${playerSelection}!`;
             } else if (playerSelection == "paper" && computerSelection == "rock") {
+                playerScore += 1;
                 return `You Win! ${playerSelection} beats ${computerSelection}!`;
             } else if (playerSelection == "scissors" && computerSelection == "rock") {
+                computerScore += 1;
                 return `You Lose! ${computerSelection} beats ${playerSelection}!`;
             } else if (playerSelection == "scissors" && computerSelection == "paper") {
+                playerScore += 1;
                 return `You Win! ${playerSelection} beats ${computerSelection}!`;
         
         
@@ -40,25 +70,14 @@ function playRound(playerSelection, computerSelection) {
     }
   }
   
-  let playerSelection;
-  let computerSelection;
-  let roundResult;
-  let finalResult;
-  const scoreBoard = document.querySelector(".scoreBoard");
-  let list;
-  let playerScore = 0;
-  let computerScore = 0;
-  let playerInput = "";
-  let containsOnlyDigits = /^[0-9]+$/
-
-
-
-  let totalRounds = 0;
 
   do {
     totalRounds = prompt("How many rounds do you want to play? Make sure to type a number!","")
   } while (isNumber(totalRounds) == false || totalRounds == null || totalRounds == undefined || totalRounds === 0);
 
+roundsToPrint = document.createElement("h3");
+roundsNumberHtml.appendChild(roundsToPrint);
+roundsToPrint.textContent = `Rounds Played: ${totalRounds}`
 
 
     function game(){
@@ -90,6 +109,25 @@ function playRound(playerSelection, computerSelection) {
 
         }
 
+        gameResult = document.createElement("div");
+        scoresHtml.appendChild(gameResult);
+        gameResult.textContent = `Player Score: ${playerScore}`
+        gameResult = document.createElement("div");
+        scoresHtml.appendChild(gameResult);
+        gameResult.textContent = `Computer Score: ${computerScore}`
+
+
+            if (playerScore == computerScore) {
+                gameConclusion = `It's a tie! Try another more rounds!`
+            } else if (playerScore > computerScore) {
+                gameConclusion = `Player Wins!`
+            } else {
+                gameConclusion = `Computer Wins!`
+            }
+        
+            gameResult = document.createElement("div");
+            gameConclusionHtml.appendChild(gameResult);
+            gameResult.textContent = gameConclusion;
         
     }
 
